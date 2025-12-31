@@ -1,0 +1,95 @@
+#Library Management System 
+
+books = {}
+def add_books():
+    while True: 
+        book_id = int(input("Enter book id: "))
+        if book_id in books:
+            print("Book id already exits!")
+            continue
+        else:
+            name = input("Enter book name: ")
+            author = input("Enter author name: ")
+            quantity = int(input("Enter quantity: "))
+        
+            books[book_id]={"Name": name, "Author":author, 
+            "Quantity":quantity}
+        
+            select = input("Do you want to add another book?")
+            if select.lower()=="no":
+              break
+        
+def view_books():
+    if not books:
+        print("No books added!")
+        
+    else:     
+        for book_id,info in books.items():
+          print("**********************")
+          print()
+          print(f"Book ID: {book_id}")
+          print(f"Name: {info['Name']}")
+          print(f"Author: {info['Author']}")
+          print(f"Quantity: {info['Quantity']}")
+          print()
+          print("************************")
+          
+def search_by_id():
+    search = int(input("Enter the ID of the book you want to search: "))
+        
+    if search in books:
+        info = books[search]
+        print("Name: ",info["Name"])
+        print("Author: ",info["Author"])
+        print("Quantity: ", info["Quantity"])
+    else:
+        print("No books available with this ID")
+            
+def delete_book():
+    delete = int(input("Enter the ID of the book you want to delete"))
+        
+    if delete in books:
+        del books[delete]
+        print("the book has been Deleted")
+        view_books()
+            
+    else:
+        print("Book with this id is not available")
+          
+while True:
+    print("-----MENU----")
+    print("1.Add Books")
+    print("2.View Books")
+    print("3.Search Book by ID")
+    print("4.Delete a Book")
+    print("5.Exit")
+    
+    try:
+        choice = int(input("Enter your choice: "))
+    except ValueError:
+        print("Enter a valid number: ")
+        continue
+    
+    if choice==1:
+        add_books()
+        
+    elif choice==2:
+        view_books()
+        
+    elif choice==3:
+        search_by_id()
+    
+    elif choice==4:
+        delete_book()
+    
+    elif choice==5:
+        print("Exited")
+        break
+    
+    else:
+        print("Invalid choice")
+        
+        
+
+        
+   
